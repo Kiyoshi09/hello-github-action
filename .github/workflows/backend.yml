@@ -21,4 +21,8 @@ jobs:
       - run: npm ci
       - run: npm run test
       - run: npm run build
+
+      - run: node dist/index.js &
+      - run: npx wait-on -t 10000 http://localhost:8080/api/health
+      - run: npm run test:api
   
